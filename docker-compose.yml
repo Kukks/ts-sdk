@@ -10,9 +10,6 @@ services:
             - ARKD_WALLET_ESPLORA_URL=http://chopsticks:3000
             - ARKD_WALLET_NEUTRINO_PEER=bitcoin:18444
             - ARKD_WALLET_NETWORK=regtest
-        volumes:
-            - type: tmpfs
-              target: /app/data
     arkd:
         container_name: arkd
         depends_on:
@@ -21,9 +18,6 @@ services:
             context: .
             dockerfile: server.Dockerfile
         restart: unless-stopped
-        volumes:
-            - ./volumes/ark/data:/app/data
-            - ./volumes/ark/wallet:/app/wallet-data
         environment:
             - ARKD_ROUND_INTERVAL=10
             - ARKD_NETWORK=regtest
